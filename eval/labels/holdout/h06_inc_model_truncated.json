@@ -1,0 +1,11 @@
+{
+  "bundle_id": "h06_inc_model_truncated",
+  "split": "holdout",
+  "expected_status": "INCOMPLETE",
+  "defect_rules": [],
+  "case_type": "model_failure",
+  "fake_script": "truncated,truncated,truncated",
+  "oracle_r3_minutes": 25,
+  "pair_of": null,
+  "note": "model output always cut off"
+}

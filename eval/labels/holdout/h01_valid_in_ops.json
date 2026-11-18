@@ -1,0 +1,11 @@
+{
+  "bundle_id": "h01_valid_in_ops",
+  "split": "holdout",
+  "expected_status": "PASS",
+  "defect_rules": [],
+  "case_type": "valid_rewrite",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 25,
+  "pair_of": null,
+  "note": "`in` lists and not-present instead of == and missing"
+}

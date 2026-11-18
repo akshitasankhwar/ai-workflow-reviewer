@@ -1,0 +1,11 @@
+{
+  "bundle_id": "b03_valid_renamed_workflow",
+  "split": "dev",
+  "expected_status": "PASS",
+  "defect_rules": [],
+  "case_type": "valid_rewrite",
+  "fake_script": "injected",
+  "oracle_r3_minutes": 25,
+  "pair_of": "b01",
+  "note": "every workflow node renamed; model answer carries injected keys"
+}

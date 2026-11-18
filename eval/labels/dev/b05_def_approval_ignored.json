@@ -1,0 +1,13 @@
+{
+  "bundle_id": "b05_def_approval_ignored",
+  "split": "dev",
+  "expected_status": "CHANGES_REQUIRED",
+  "defect_rules": [
+    "R3"
+  ],
+  "case_type": "approval_ignored",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 25,
+  "pair_of": "b01",
+  "note": "spec keeps old 30 min, approval says 25 (behaviour change of b01)"
+}

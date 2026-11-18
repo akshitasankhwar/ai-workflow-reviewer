@@ -1,0 +1,11 @@
+{
+  "bundle_id": "b17_inc_missing_artifact",
+  "split": "dev",
+  "expected_status": "INCOMPLETE",
+  "defect_rules": [],
+  "case_type": "missing_artifact",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 25,
+  "pair_of": null,
+  "note": "manifest lists workflow.json but the file is absent"
+}

@@ -1,0 +1,11 @@
+{
+  "bundle_id": "b02_valid_reorder_seconds",
+  "split": "dev",
+  "expected_status": "PASS",
+  "defect_rules": [],
+  "case_type": "valid_rewrite",
+  "fake_script": "concern",
+  "oracle_r3_minutes": 25,
+  "pair_of": "b01",
+  "note": "rules listed in reverse, 1500 seconds instead of 25 minutes"
+}

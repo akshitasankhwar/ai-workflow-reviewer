@@ -1,0 +1,11 @@
+{
+  "bundle_id": "b01_valid_base",
+  "artifacts": {
+    "requirements": {"path": "requirements.md", "version": "r1"},
+    "spec": {"path": "spec.json", "version": "s1"},
+    "workflow": {"path": "workflow.json", "version": "w1"},
+    "code": {"path": "code/router.py", "version": "c1"},
+    "approvals": {"path": "approvals.json", "version": "a1"}
+  },
+  "code_entrypoint": "route"
+}

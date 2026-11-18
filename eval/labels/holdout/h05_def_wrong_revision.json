@@ -1,0 +1,13 @@
+{
+  "bundle_id": "h05_def_wrong_revision",
+  "split": "holdout",
+  "expected_status": "CHANGES_REQUIRED",
+  "defect_rules": [
+    "R3"
+  ],
+  "case_type": "unapproved_change",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 30,
+  "pair_of": null,
+  "note": "A1 applies to r0, not r1, so it is ignored"
+}

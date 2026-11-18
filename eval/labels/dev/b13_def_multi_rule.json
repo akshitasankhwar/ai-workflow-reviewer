@@ -1,0 +1,15 @@
+{
+  "bundle_id": "b13_def_multi_rule",
+  "split": "dev",
+  "expected_status": "CHANGES_REQUIRED",
+  "defect_rules": [
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "case_type": "multi_rule",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 25,
+  "pair_of": null,
+  "note": "plausible code: urgent checked before missing category, and > at the boundary"
+}

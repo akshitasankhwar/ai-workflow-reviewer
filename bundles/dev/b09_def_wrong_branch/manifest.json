@@ -1,0 +1,26 @@
+{
+  "bundle_id": "b09_def_wrong_branch",
+  "artifacts": {
+    "requirements": {
+      "path": "requirements.md",
+      "version": "r1"
+    },
+    "spec": {
+      "path": "spec.json",
+      "version": "s1"
+    },
+    "workflow": {
+      "path": "workflow.json",
+      "version": "w1"
+    },
+    "code": {
+      "path": "code/router.py",
+      "version": "c1"
+    },
+    "approvals": {
+      "path": "approvals.json",
+      "version": "a1"
+    }
+  },
+  "code_entrypoint": "route"
+}

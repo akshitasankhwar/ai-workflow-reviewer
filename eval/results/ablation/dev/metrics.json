@@ -1,0 +1,32 @@
+{
+  "cases": 19,
+  "status_accuracy": "10/19",
+  "false_passes": "0/15",
+  "false_blocks": "4/4",
+  "missed_defects": "0/10",
+  "incomplete_by_case_type": {},
+  "incomplete_expected_vs_actual": "0/5",
+  "finding_quality": {
+    "defect_rules_named_by_rule_ref": "12/13",
+    "defect_rules_covered_incl_counterexamples": "12/13",
+    "blocking_findings_on_defective": 35,
+    "unsupported_blocking_findings": "9/35",
+    "blocking_findings_on_valid_or_incomplete": 25,
+    "counterexamples_valid_by_oracle": "10/59"
+  },
+  "cost": {
+    "total_seconds": 0.51,
+    "max_seconds": 0.0822,
+    "model_calls": 21,
+    "model_retries": 2,
+    "response_source": {
+      "fake": 19
+    }
+  },
+  "run": "ablation",
+  "split": "dev",
+  "code": "src",
+  "model_client": "fake",
+  "ignore_approvals": true,
+  "label_problems": []
+}

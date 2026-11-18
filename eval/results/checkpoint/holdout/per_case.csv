@@ -1,0 +1,7 @@
+bundle_id,case_type,expected,actual,correct,defect_rules,blocking_refs,blocking_findings,unsupported_findings,defect_rules_hit,defect_rules_hit_via_cx,counterexamples,counterexamples_valid,locations,incomplete_reasons,model_calls,model_retries,response_source,seconds
+h01_valid_in_ops,valid_rewrite,PASS,PASS,True,,,0,0,0,0,0,0,,,1,0,fake,0.0829
+h02_def_default_route,wrong_branch,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R9,R9,1,0,1,1,1,1,workflow:node:to_normal,,1,0,fake,0.0283
+h03_def_inverted_missing,wrong_branch,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R1,R1 R2 R3 R9,6,3,1,1,6,6,spec:/default | spec:/rules/1 | spec:/rules/2 | spec:/rules/0 | spec:/rules/0 | spec:/rules/0,,1,0,fake,0.0251
+h04_inc_truncated_spec,malformed_artifact,INCOMPLETE,INCOMPLETE,True,,,0,0,0,0,0,0,,"spec: spec.json: Expecting ',' delimiter at line 6 | spec_equivalence:skipped | coverage:skipped",1,0,fake,0.0165
+h05_def_wrong_revision,unapproved_change,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R3,R9,3,3,0,0,3,3,code:L15 | spec:/rules/2 | workflow:node:to_escalation,,1,0,fake,0.0248
+h06_inc_model_truncated,model_failure,INCOMPLETE,INCOMPLETE,True,,,0,0,0,0,0,0,,model_review:error,3,2,fake,0.0186

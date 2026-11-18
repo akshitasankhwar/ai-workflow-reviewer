@@ -1,0 +1,11 @@
+{
+  "bundle_id": "b01_valid_base",
+  "split": "dev",
+  "expected_status": "PASS",
+  "defect_rules": [],
+  "case_type": "valid",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 25,
+  "pair_of": null,
+  "note": "hand-written base; A1 lowers R3 30->25"
+}

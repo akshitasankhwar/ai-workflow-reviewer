@@ -1,0 +1,40 @@
+{
+  "cases": 19,
+  "status_accuracy": "15/19",
+  "false_passes": "0/15",
+  "false_blocks": "0/4",
+  "missed_defects": "0/10",
+  "incomplete_by_case_type": {
+    "valid": 1,
+    "valid_rewrite": 2,
+    "valid_unusual": 1,
+    "approval_conflict": 1,
+    "model_failure": 2,
+    "missing_artifact": 1,
+    "unsupported_construct": 1
+  },
+  "incomplete_expected_vs_actual": "5/5",
+  "finding_quality": {
+    "defect_rules_named_by_rule_ref": "11/13",
+    "defect_rules_covered_incl_counterexamples": "11/13",
+    "blocking_findings_on_defective": 15,
+    "unsupported_blocking_findings": "0/15",
+    "blocking_findings_on_valid_or_incomplete": 0,
+    "counterexamples_valid_by_oracle": "14/14"
+  },
+  "cost": {
+    "total_seconds": 36.986,
+    "max_seconds": 2.1958,
+    "model_calls": 0,
+    "model_retries": 0,
+    "response_source": {
+      "none": 19
+    }
+  },
+  "run": "real_ollama",
+  "split": "dev",
+  "code": "src",
+  "model_client": "ollama",
+  "ignore_approvals": false,
+  "label_problems": []
+}

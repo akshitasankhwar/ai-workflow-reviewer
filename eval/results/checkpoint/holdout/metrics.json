@@ -1,0 +1,35 @@
+{
+  "cases": 6,
+  "status_accuracy": "6/6",
+  "false_passes": "0/5",
+  "false_blocks": "0/1",
+  "missed_defects": "0/3",
+  "incomplete_by_case_type": {
+    "malformed_artifact": 1,
+    "model_failure": 1
+  },
+  "incomplete_expected_vs_actual": "2/2",
+  "finding_quality": {
+    "defect_rules_named_by_rule_ref": "2/3",
+    "defect_rules_covered_incl_counterexamples": "2/3",
+    "blocking_findings_on_defective": 10,
+    "unsupported_blocking_findings": "6/10",
+    "blocking_findings_on_valid_or_incomplete": 0,
+    "counterexamples_valid_by_oracle": "10/10"
+  },
+  "cost": {
+    "total_seconds": 0.196,
+    "max_seconds": 0.0829,
+    "model_calls": 8,
+    "model_retries": 2,
+    "response_source": {
+      "fake": 6
+    }
+  },
+  "run": "checkpoint",
+  "split": "holdout",
+  "code": "eval/checkpoint",
+  "model_client": "fake",
+  "ignore_approvals": false,
+  "label_problems": []
+}

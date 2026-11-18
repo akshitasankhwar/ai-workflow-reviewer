@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "workflow-reviewer"
+version = "0.1.0"
+description = "Deterministic-first reviewer that checks requirements, spec, workflow and code agree."
+requires-python = ">=3.11"
+dependencies = ["pydantic==2.14.3"]
+
+[project.optional-dependencies]
+dev = ["pytest==9.2.0"]
+
+[project.scripts]
+reviewer = "reviewer.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+
+# Bundle code under bundles/ is reviewer *input*: it is parsed (AST), never imported or run,
+# and uses the DSL helpers minutes()/seconds() on purpose. Keep the IDE type checker off it.
+[tool.pyright]
+exclude = ["bundles", ".venv", "eval/results"]
+ignore = ["bundles"]

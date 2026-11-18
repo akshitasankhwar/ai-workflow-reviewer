@@ -1,0 +1,13 @@
+{
+  "bundle_id": "b09_def_wrong_branch",
+  "split": "dev",
+  "expected_status": "CHANGES_REQUIRED",
+  "defect_rules": [
+    "R2"
+  ],
+  "case_type": "wrong_branch",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 25,
+  "pair_of": null,
+  "note": "urgent tickets go to escalation in the workflow"
+}

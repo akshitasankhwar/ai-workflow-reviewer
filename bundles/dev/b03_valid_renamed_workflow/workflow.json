@@ -1,0 +1,62 @@
+{
+  "workflow_version": "w1",
+  "start": "n_cat",
+  "nodes": [
+    {
+      "id": "n_cat",
+      "type": "decision",
+      "condition": {
+        "missing": "category"
+      },
+      "on_true": "r_manual",
+      "on_false": "n_urg"
+    },
+    {
+      "id": "n_urg",
+      "type": "decision",
+      "condition": {
+        "field": "priority",
+        "op": "==",
+        "value": "urgent"
+      },
+      "on_true": "r_prio",
+      "on_false": "n_wait"
+    },
+    {
+      "id": "n_wait",
+      "type": "decision",
+      "condition": {
+        "field": "wait_time",
+        "op": ">=",
+        "value": 25,
+        "unit": "minutes"
+      },
+      "on_true": "r_esc",
+      "on_false": "r_norm"
+    },
+    {
+      "id": "r_manual",
+      "type": "route",
+      "route": "manual_review",
+      "rule_ref": "R1"
+    },
+    {
+      "id": "r_prio",
+      "type": "route",
+      "route": "priority_queue",
+      "rule_ref": "R2"
+    },
+    {
+      "id": "r_esc",
+      "type": "route",
+      "route": "escalation",
+      "rule_ref": "R3"
+    },
+    {
+      "id": "r_norm",
+      "type": "route",
+      "route": "normal_queue",
+      "rule_ref": "R9"
+    }
+  ]
+}

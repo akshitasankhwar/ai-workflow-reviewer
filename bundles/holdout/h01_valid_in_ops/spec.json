@@ -1,0 +1,54 @@
+{
+  "spec_version": "s1",
+  "implements_revision": "r1",
+  "rules": [
+    {
+      "id": "S1",
+      "priority": 1,
+      "when": {
+        "not": {
+          "present": "category"
+        }
+      },
+      "route": "manual_review",
+      "source_refs": [
+        "R1"
+      ]
+    },
+    {
+      "id": "S2",
+      "priority": 2,
+      "when": {
+        "field": "priority",
+        "op": "in",
+        "values": [
+          "urgent"
+        ]
+      },
+      "route": "priority_queue",
+      "source_refs": [
+        "R2"
+      ]
+    },
+    {
+      "id": "S3",
+      "priority": 3,
+      "when": {
+        "field": "wait_time",
+        "op": ">=",
+        "value": 25,
+        "unit": "minutes"
+      },
+      "route": "escalation",
+      "source_refs": [
+        "R3"
+      ]
+    }
+  ],
+  "default": {
+    "route": "normal_queue",
+    "source_refs": [
+      "R9"
+    ]
+  }
+}

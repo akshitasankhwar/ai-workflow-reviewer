@@ -1,0 +1,288 @@
+{
+  "a": "final",
+  "b": "ablation",
+  "split": "dev",
+  "metrics": {
+    "status_accuracy": [
+      "19/19",
+      "10/19"
+    ],
+    "false_passes": [
+      "0/15",
+      "0/15"
+    ],
+    "false_blocks": [
+      "0/4",
+      "4/4"
+    ],
+    "missed_defects": [
+      "0/10",
+      "0/10"
+    ]
+  },
+  "finding_quality": {
+    "defect_rules_named_by_rule_ref": [
+      "11/13",
+      "12/13"
+    ],
+    "defect_rules_covered_incl_counterexamples": [
+      "11/13",
+      "12/13"
+    ],
+    "blocking_findings_on_defective": [
+      15,
+      35
+    ],
+    "unsupported_blocking_findings": [
+      "0/15",
+      "9/35"
+    ],
+    "blocking_findings_on_valid_or_incomplete": [
+      0,
+      25
+    ],
+    "counterexamples_valid_by_oracle": [
+      "14/14",
+      "10/59"
+    ]
+  },
+  "changed_cases": [
+    {
+      "bundle_id": "b01_valid_base",
+      "case_type": "valid",
+      "expected": "PASS",
+      "actual": [
+        "PASS",
+        "CHANGES_REQUIRED"
+      ],
+      "blocking_refs": [
+        "",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    },
+    {
+      "bundle_id": "b02_valid_reorder_seconds",
+      "case_type": "valid_rewrite",
+      "expected": "PASS",
+      "actual": [
+        "PASS",
+        "CHANGES_REQUIRED"
+      ],
+      "blocking_refs": [
+        "",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    },
+    {
+      "bundle_id": "b03_valid_renamed_workflow",
+      "case_type": "valid_rewrite",
+      "expected": "PASS",
+      "actual": [
+        "PASS",
+        "CHANGES_REQUIRED"
+      ],
+      "blocking_refs": [
+        "",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    },
+    {
+      "bundle_id": "b04_valid_unusual",
+      "case_type": "valid_unusual",
+      "expected": "PASS",
+      "actual": [
+        "PASS",
+        "CHANGES_REQUIRED"
+      ],
+      "blocking_refs": [
+        "",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    },
+    {
+      "bundle_id": "b05_def_approval_ignored",
+      "case_type": "approval_ignored",
+      "expected": "CHANGES_REQUIRED",
+      "counterexamples_valid": [
+        "1",
+        "0"
+      ]
+    },
+    {
+      "bundle_id": "b06_def_boundary",
+      "case_type": "boundary",
+      "expected": "CHANGES_REQUIRED",
+      "counterexamples_valid": [
+        "1",
+        "0"
+      ]
+    },
+    {
+      "bundle_id": "b07_def_precedence",
+      "case_type": "precedence",
+      "expected": "CHANGES_REQUIRED",
+      "blocking_refs": [
+        "R2",
+        "R2 R3"
+      ]
+    },
+    {
+      "bundle_id": "b08_def_missing_requirement",
+      "case_type": "missing_requirement",
+      "expected": "CHANGES_REQUIRED",
+      "blocking_refs": [
+        "R2",
+        "R2 R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    },
+    {
+      "bundle_id": "b09_def_wrong_branch",
+      "case_type": "wrong_branch",
+      "expected": "CHANGES_REQUIRED",
+      "blocking_refs": [
+        "R2",
+        "R2 R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    },
+    {
+      "bundle_id": "b11_def_code_disagrees",
+      "case_type": "code_disagrees",
+      "expected": "CHANGES_REQUIRED",
+      "blocking_refs": [
+        "R2",
+        "R2 R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    },
+    {
+      "bundle_id": "b13_def_multi_rule",
+      "case_type": "multi_rule",
+      "expected": "CHANGES_REQUIRED",
+      "counterexamples_valid": [
+        "2",
+        "1"
+      ]
+    },
+    {
+      "bundle_id": "b14_def_injection",
+      "case_type": "injection",
+      "expected": "CHANGES_REQUIRED",
+      "counterexamples_valid": [
+        "1",
+        "0"
+      ]
+    },
+    {
+      "bundle_id": "b15_inc_approval_conflict",
+      "case_type": "approval_conflict",
+      "expected": "INCOMPLETE",
+      "actual": [
+        "INCOMPLETE",
+        "CHANGES_REQUIRED"
+      ],
+      "blocking_refs": [
+        "",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    },
+    {
+      "bundle_id": "b16_inc_model_timeout",
+      "case_type": "model_failure",
+      "expected": "INCOMPLETE",
+      "actual": [
+        "INCOMPLETE",
+        "CHANGES_REQUIRED"
+      ],
+      "blocking_refs": [
+        "",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    },
+    {
+      "bundle_id": "b17_inc_missing_artifact",
+      "case_type": "missing_artifact",
+      "expected": "INCOMPLETE",
+      "actual": [
+        "INCOMPLETE",
+        "CHANGES_REQUIRED"
+      ],
+      "blocking_refs": [
+        "",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "2"
+      ]
+    },
+    {
+      "bundle_id": "b18_inc_unsupported_code",
+      "case_type": "unsupported_construct",
+      "expected": "INCOMPLETE",
+      "actual": [
+        "INCOMPLETE",
+        "CHANGES_REQUIRED"
+      ],
+      "blocking_refs": [
+        "",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "2"
+      ]
+    },
+    {
+      "bundle_id": "b19_inc_model_invented_ref",
+      "case_type": "model_failure",
+      "expected": "INCOMPLETE",
+      "actual": [
+        "INCOMPLETE",
+        "CHANGES_REQUIRED"
+      ],
+      "blocking_refs": [
+        "",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    }
+  ]
+}

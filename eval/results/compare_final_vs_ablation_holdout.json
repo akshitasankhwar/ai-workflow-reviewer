@@ -1,0 +1,124 @@
+{
+  "a": "final",
+  "b": "ablation",
+  "split": "holdout",
+  "metrics": {
+    "status_accuracy": [
+      "6/6",
+      "3/6"
+    ],
+    "false_passes": [
+      "0/5",
+      "0/5"
+    ],
+    "false_blocks": [
+      "0/1",
+      "1/1"
+    ],
+    "missed_defects": [
+      "0/3",
+      "0/3"
+    ]
+  },
+  "finding_quality": {
+    "defect_rules_named_by_rule_ref": [
+      "3/3",
+      "3/3"
+    ],
+    "defect_rules_covered_incl_counterexamples": [
+      "3/3",
+      "3/3"
+    ],
+    "blocking_findings_on_defective": [
+      10,
+      15
+    ],
+    "unsupported_blocking_findings": [
+      "2/10",
+      "7/15"
+    ],
+    "blocking_findings_on_valid_or_incomplete": [
+      0,
+      8
+    ],
+    "counterexamples_valid_by_oracle": [
+      "10/10",
+      "10/23"
+    ]
+  },
+  "changed_cases": [
+    {
+      "bundle_id": "h01_valid_in_ops",
+      "case_type": "valid_rewrite",
+      "expected": "PASS",
+      "actual": [
+        "PASS",
+        "CHANGES_REQUIRED"
+      ],
+      "blocking_refs": [
+        "",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    },
+    {
+      "bundle_id": "h02_def_default_route",
+      "case_type": "wrong_branch",
+      "expected": "CHANGES_REQUIRED",
+      "blocking_refs": [
+        "R9",
+        "R3 R9"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    },
+    {
+      "bundle_id": "h03_def_inverted_missing",
+      "case_type": "wrong_branch",
+      "expected": "CHANGES_REQUIRED",
+      "unsupported_findings": [
+        "2",
+        "4"
+      ]
+    },
+    {
+      "bundle_id": "h04_inc_truncated_spec",
+      "case_type": "malformed_artifact",
+      "expected": "INCOMPLETE",
+      "actual": [
+        "INCOMPLETE",
+        "CHANGES_REQUIRED"
+      ],
+      "blocking_refs": [
+        "",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "2"
+      ]
+    },
+    {
+      "bundle_id": "h06_inc_model_truncated",
+      "case_type": "model_failure",
+      "expected": "INCOMPLETE",
+      "actual": [
+        "INCOMPLETE",
+        "CHANGES_REQUIRED"
+      ],
+      "blocking_refs": [
+        "",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "0",
+        "3"
+      ]
+    }
+  ]
+}

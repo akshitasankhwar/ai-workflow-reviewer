@@ -1,0 +1,77 @@
+{
+  "a": "checkpoint",
+  "b": "final",
+  "split": "holdout",
+  "metrics": {
+    "status_accuracy": [
+      "6/6",
+      "6/6"
+    ],
+    "false_passes": [
+      "0/5",
+      "0/5"
+    ],
+    "false_blocks": [
+      "0/1",
+      "0/1"
+    ],
+    "missed_defects": [
+      "0/3",
+      "0/3"
+    ]
+  },
+  "finding_quality": {
+    "defect_rules_named_by_rule_ref": [
+      "2/3",
+      "3/3"
+    ],
+    "defect_rules_covered_incl_counterexamples": [
+      "2/3",
+      "3/3"
+    ],
+    "blocking_findings_on_defective": [
+      10,
+      10
+    ],
+    "unsupported_blocking_findings": [
+      "6/10",
+      "2/10"
+    ],
+    "blocking_findings_on_valid_or_incomplete": [
+      0,
+      0
+    ],
+    "counterexamples_valid_by_oracle": [
+      "10/10",
+      "10/10"
+    ]
+  },
+  "changed_cases": [
+    {
+      "bundle_id": "h03_def_inverted_missing",
+      "case_type": "wrong_branch",
+      "expected": "CHANGES_REQUIRED",
+      "blocking_refs": [
+        "R1 R2 R3 R9",
+        "R1 R2 R3"
+      ],
+      "unsupported_findings": [
+        "3",
+        "2"
+      ]
+    },
+    {
+      "bundle_id": "h05_def_wrong_revision",
+      "case_type": "unapproved_change",
+      "expected": "CHANGES_REQUIRED",
+      "blocking_refs": [
+        "R9",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "3",
+        "0"
+      ]
+    }
+  ]
+}

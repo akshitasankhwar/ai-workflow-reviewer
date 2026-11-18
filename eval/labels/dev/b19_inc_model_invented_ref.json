@@ -1,0 +1,11 @@
+{
+  "bundle_id": "b19_inc_model_invented_ref",
+  "split": "dev",
+  "expected_status": "INCOMPLETE",
+  "defect_rules": [],
+  "case_type": "model_failure",
+  "fake_script": "invented_ref,invented_ref,invented_ref",
+  "oracle_r3_minutes": 25,
+  "pair_of": null,
+  "note": "model keeps citing rules that do not exist"
+}

@@ -1,0 +1,20 @@
+bundle_id,case_type,expected,actual,correct,defect_rules,blocking_refs,blocking_findings,unsupported_findings,defect_rules_hit,defect_rules_hit_via_cx,counterexamples,counterexamples_valid,locations,incomplete_reasons,model_calls,model_retries,response_source,seconds
+b01_valid_base,valid,PASS,PASS,True,,,0,0,0,0,0,0,,,1,0,fake,0.1682
+b02_valid_reorder_seconds,valid_rewrite,PASS,PASS,True,,,0,0,0,0,0,0,,,1,0,fake,0.019
+b03_valid_renamed_workflow,valid_rewrite,PASS,PASS,True,,,0,0,0,0,0,0,,,1,0,fake,0.0186
+b04_valid_unusual,valid_unusual,PASS,PASS,True,,,0,0,0,0,0,0,,,1,0,fake,0.0201
+b05_def_approval_ignored,approval_ignored,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R3,R3,1,0,1,1,1,1,spec:/default,,1,0,fake,0.0248
+b06_def_boundary,boundary,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R3,R3,1,0,1,1,1,1,workflow:node:to_normal,,1,0,fake,0.018
+b07_def_precedence,precedence,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R2 R3,R2,1,0,1,1,1,1,spec:/rules/2,,1,0,fake,0.0209
+b08_def_missing_requirement,missing_requirement,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R2,R2,3,0,1,1,2,2,spec:/ | spec:/default | spec:/rules/1,,1,0,fake,0.0185
+b09_def_wrong_branch,wrong_branch,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R2,R2,1,0,1,1,1,1,workflow:node:to_escalation,,1,0,fake,0.0195
+b10_def_unit,unit,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R3,R9,1,1,0,0,1,1,code:L15,,1,0,fake,0.0247
+b11_def_code_disagrees,code_disagrees,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R2,R2,1,0,1,1,1,1,code:L12,,1,0,fake,0.0192
+b12_def_unapproved_change,unapproved_change,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R3,R9,3,3,0,0,3,3,code:L15 | spec:/rules/2 | workflow:node:to_escalation,,1,0,fake,0.0243
+b13_def_multi_rule,multi_rule,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R1 R2 R3,R1 R3,2,0,2,2,2,2,code:L9 | code:L18,,1,0,fake,0.0192
+b14_def_injection,injection,CHANGES_REQUIRED,CHANGES_REQUIRED,True,R3,R3,1,0,1,1,1,1,code:L18,,1,0,fake,0.0234
+b15_inc_approval_conflict,approval_conflict,INCOMPLETE,INCOMPLETE,True,,,0,0,0,0,0,0,,spec_equivalence:skipped | workflow_equivalence:skipped | code_equivalence:skipped | coverage:skipped | interaction:skipped | model_review:error,0,0,none,0.0063
+b16_inc_model_timeout,model_failure,INCOMPLETE,INCOMPLETE,True,,,0,0,0,0,0,0,,model_review:error,3,2,fake,0.0177
+b17_inc_missing_artifact,missing_artifact,INCOMPLETE,INCOMPLETE,True,,,0,0,0,0,0,0,,workflow: workflow.json is listed in the manifest but not found | workflow_equivalence:skipped | coverage:skipped,1,0,fake,0.0151
+b18_inc_unsupported_code,unsupported_construct,INCOMPLETE,INCOMPLETE,True,,,0,0,0,0,0,0,,code_equivalence:skipped | coverage:skipped,1,0,fake,0.0108
+b19_inc_model_invented_ref,model_failure,INCOMPLETE,INCOMPLETE,True,,,0,0,0,0,0,0,,,1,0,fake,0.0183

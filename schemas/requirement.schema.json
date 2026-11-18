@@ -1,0 +1,640 @@
+{
+  "$defs": {
+    "And": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "and": "#/$defs/And",
+                "cmp": "#/$defs/Compare",
+                "const": "#/$defs/Const",
+                "eq": "#/$defs/Eq",
+                "in": "#/$defs/In",
+                "missing": "#/$defs/Missing",
+                "not": "#/$defs/Not",
+                "or": "#/$defs/Or"
+              },
+              "propertyName": "kind"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/Const"
+              },
+              {
+                "$ref": "#/$defs/Missing"
+              },
+              {
+                "$ref": "#/$defs/Compare"
+              },
+              {
+                "$ref": "#/$defs/Eq"
+              },
+              {
+                "$ref": "#/$defs/In"
+              },
+              {
+                "$ref": "#/$defs/And"
+              },
+              {
+                "$ref": "#/$defs/Or"
+              },
+              {
+                "$ref": "#/$defs/Not"
+              }
+            ]
+          },
+          "title": "Args",
+          "type": "array"
+        },
+        "kind": {
+          "const": "and",
+          "default": "and",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "args"
+      ],
+      "title": "And",
+      "type": "object"
+    },
+    "Compare": {
+      "additionalProperties": false,
+      "properties": {
+        "default": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Default"
+        },
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "kind": {
+          "const": "cmp",
+          "default": "cmp",
+          "title": "Kind",
+          "type": "string"
+        },
+        "on_missing": {
+          "default": "false",
+          "enum": [
+            "false",
+            "error"
+          ],
+          "title": "On Missing",
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "<",
+            "<=",
+            ">",
+            ">="
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "field",
+        "op",
+        "value"
+      ],
+      "title": "Compare",
+      "type": "object"
+    },
+    "Const": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "const",
+          "default": "const",
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "Const",
+      "type": "object"
+    },
+    "Eq": {
+      "additionalProperties": false,
+      "properties": {
+        "default": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Default"
+        },
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "kind": {
+          "const": "eq",
+          "default": "eq",
+          "title": "Kind",
+          "type": "string"
+        },
+        "on_missing": {
+          "default": "false",
+          "enum": [
+            "false",
+            "error"
+          ],
+          "title": "On Missing",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "field",
+        "value"
+      ],
+      "title": "Eq",
+      "type": "object"
+    },
+    "In": {
+      "additionalProperties": false,
+      "properties": {
+        "default": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Default"
+        },
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "kind": {
+          "const": "in",
+          "default": "in",
+          "title": "Kind",
+          "type": "string"
+        },
+        "on_missing": {
+          "default": "false",
+          "enum": [
+            "false",
+            "error"
+          ],
+          "title": "On Missing",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "title": "Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "field",
+        "values"
+      ],
+      "title": "In",
+      "type": "object"
+    },
+    "Location": {
+      "additionalProperties": false,
+      "description": "Where a piece of evidence lives: artifact, its version, and a pointer inside it.\n\n`pointer` is a line (\"L12\") for text artifacts, a JSON pointer (\"/rules/2\") for\nJSON artifacts, or a node id (\"node:n3\") for workflow nodes.",
+      "properties": {
+        "artifact": {
+          "enum": [
+            "manifest",
+            "requirements",
+            "spec",
+            "workflow",
+            "code",
+            "approvals"
+          ],
+          "title": "Artifact",
+          "type": "string"
+        },
+        "excerpt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Excerpt"
+        },
+        "line": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line"
+        },
+        "pointer": {
+          "title": "Pointer",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact",
+        "version",
+        "pointer"
+      ],
+      "title": "Location",
+      "type": "object"
+    },
+    "Missing": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "kind": {
+          "const": "missing",
+          "default": "missing",
+          "title": "Kind",
+          "type": "string"
+        },
+        "on_missing": {
+          "default": "false",
+          "enum": [
+            "false",
+            "error"
+          ],
+          "title": "On Missing",
+          "type": "string"
+        }
+      },
+      "required": [
+        "field"
+      ],
+      "title": "Missing",
+      "type": "object"
+    },
+    "Not": {
+      "additionalProperties": false,
+      "properties": {
+        "arg": {
+          "discriminator": {
+            "mapping": {
+              "and": "#/$defs/And",
+              "cmp": "#/$defs/Compare",
+              "const": "#/$defs/Const",
+              "eq": "#/$defs/Eq",
+              "in": "#/$defs/In",
+              "missing": "#/$defs/Missing",
+              "not": "#/$defs/Not",
+              "or": "#/$defs/Or"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Const"
+            },
+            {
+              "$ref": "#/$defs/Missing"
+            },
+            {
+              "$ref": "#/$defs/Compare"
+            },
+            {
+              "$ref": "#/$defs/Eq"
+            },
+            {
+              "$ref": "#/$defs/In"
+            },
+            {
+              "$ref": "#/$defs/And"
+            },
+            {
+              "$ref": "#/$defs/Or"
+            },
+            {
+              "$ref": "#/$defs/Not"
+            }
+          ],
+          "title": "Arg"
+        },
+        "kind": {
+          "const": "not",
+          "default": "not",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "arg"
+      ],
+      "title": "Not",
+      "type": "object"
+    },
+    "Or": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "and": "#/$defs/And",
+                "cmp": "#/$defs/Compare",
+                "const": "#/$defs/Const",
+                "eq": "#/$defs/Eq",
+                "in": "#/$defs/In",
+                "missing": "#/$defs/Missing",
+                "not": "#/$defs/Not",
+                "or": "#/$defs/Or"
+              },
+              "propertyName": "kind"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/Const"
+              },
+              {
+                "$ref": "#/$defs/Missing"
+              },
+              {
+                "$ref": "#/$defs/Compare"
+              },
+              {
+                "$ref": "#/$defs/Eq"
+              },
+              {
+                "$ref": "#/$defs/In"
+              },
+              {
+                "$ref": "#/$defs/And"
+              },
+              {
+                "$ref": "#/$defs/Or"
+              },
+              {
+                "$ref": "#/$defs/Not"
+              }
+            ]
+          },
+          "title": "Args",
+          "type": "array"
+        },
+        "kind": {
+          "const": "or",
+          "default": "or",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "args"
+      ],
+      "title": "Or",
+      "type": "object"
+    },
+    "RequirementException": {
+      "additionalProperties": false,
+      "description": "`except if D, route to Y` inside requirement R: (C and D) -> Y, ahead of R.",
+      "properties": {
+        "condition": {
+          "discriminator": {
+            "mapping": {
+              "and": "#/$defs/And",
+              "cmp": "#/$defs/Compare",
+              "const": "#/$defs/Const",
+              "eq": "#/$defs/Eq",
+              "in": "#/$defs/In",
+              "missing": "#/$defs/Missing",
+              "not": "#/$defs/Not",
+              "or": "#/$defs/Or"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Const"
+            },
+            {
+              "$ref": "#/$defs/Missing"
+            },
+            {
+              "$ref": "#/$defs/Compare"
+            },
+            {
+              "$ref": "#/$defs/Eq"
+            },
+            {
+              "$ref": "#/$defs/In"
+            },
+            {
+              "$ref": "#/$defs/And"
+            },
+            {
+              "$ref": "#/$defs/Or"
+            },
+            {
+              "$ref": "#/$defs/Not"
+            }
+          ],
+          "title": "Condition"
+        },
+        "route": {
+          "title": "Route",
+          "type": "string"
+        }
+      },
+      "required": [
+        "condition",
+        "route"
+      ],
+      "title": "RequirementException",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One normative sentence of requirements.md, compiled to IR.",
+  "properties": {
+    "condition": {
+      "anyOf": [
+        {
+          "discriminator": {
+            "mapping": {
+              "and": "#/$defs/And",
+              "cmp": "#/$defs/Compare",
+              "const": "#/$defs/Const",
+              "eq": "#/$defs/Eq",
+              "in": "#/$defs/In",
+              "missing": "#/$defs/Missing",
+              "not": "#/$defs/Not",
+              "or": "#/$defs/Or"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Const"
+            },
+            {
+              "$ref": "#/$defs/Missing"
+            },
+            {
+              "$ref": "#/$defs/Compare"
+            },
+            {
+              "$ref": "#/$defs/Eq"
+            },
+            {
+              "$ref": "#/$defs/In"
+            },
+            {
+              "$ref": "#/$defs/And"
+            },
+            {
+              "$ref": "#/$defs/Or"
+            },
+            {
+              "$ref": "#/$defs/Not"
+            }
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Condition"
+    },
+    "exceptions": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/RequirementException"
+      },
+      "title": "Exceptions",
+      "type": "array"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "is_default": {
+      "title": "Is Default",
+      "type": "boolean"
+    },
+    "location": {
+      "$ref": "#/$defs/Location"
+    },
+    "order": {
+      "title": "Order",
+      "type": "integer"
+    },
+    "route": {
+      "title": "Route",
+      "type": "string"
+    },
+    "text": {
+      "title": "Text",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "order",
+    "text",
+    "condition",
+    "route",
+    "is_default",
+    "location"
+  ],
+  "title": "Requirement",
+  "type": "object"
+}

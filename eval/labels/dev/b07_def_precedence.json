@@ -1,0 +1,14 @@
+{
+  "bundle_id": "b07_def_precedence",
+  "split": "dev",
+  "expected_status": "CHANGES_REQUIRED",
+  "defect_rules": [
+    "R2",
+    "R3"
+  ],
+  "case_type": "precedence",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 25,
+  "pair_of": null,
+  "note": "spec evaluates R3 before R2"
+}

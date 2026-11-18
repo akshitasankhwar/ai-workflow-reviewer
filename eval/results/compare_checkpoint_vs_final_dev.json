@@ -1,0 +1,77 @@
+{
+  "a": "checkpoint",
+  "b": "final",
+  "split": "dev",
+  "metrics": {
+    "status_accuracy": [
+      "19/19",
+      "19/19"
+    ],
+    "false_passes": [
+      "0/15",
+      "0/15"
+    ],
+    "false_blocks": [
+      "0/4",
+      "0/4"
+    ],
+    "missed_defects": [
+      "0/10",
+      "0/10"
+    ]
+  },
+  "finding_quality": {
+    "defect_rules_named_by_rule_ref": [
+      "9/13",
+      "11/13"
+    ],
+    "defect_rules_covered_incl_counterexamples": [
+      "9/13",
+      "11/13"
+    ],
+    "blocking_findings_on_defective": [
+      15,
+      15
+    ],
+    "unsupported_blocking_findings": [
+      "4/15",
+      "0/15"
+    ],
+    "blocking_findings_on_valid_or_incomplete": [
+      0,
+      0
+    ],
+    "counterexamples_valid_by_oracle": [
+      "14/14",
+      "14/14"
+    ]
+  },
+  "changed_cases": [
+    {
+      "bundle_id": "b10_def_unit",
+      "case_type": "unit",
+      "expected": "CHANGES_REQUIRED",
+      "blocking_refs": [
+        "R9",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "1",
+        "0"
+      ]
+    },
+    {
+      "bundle_id": "b12_def_unapproved_change",
+      "case_type": "unapproved_change",
+      "expected": "CHANGES_REQUIRED",
+      "blocking_refs": [
+        "R9",
+        "R3"
+      ],
+      "unsupported_findings": [
+        "3",
+        "0"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "bundle_id": "b12_def_unapproved_change",
+  "split": "dev",
+  "expected_status": "CHANGES_REQUIRED",
+  "defect_rules": [
+    "R3"
+  ],
+  "case_type": "unapproved_change",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 30,
+  "pair_of": null,
+  "note": "A1 is only pending, so R3 stays 30 but every artifact uses 25"
+}

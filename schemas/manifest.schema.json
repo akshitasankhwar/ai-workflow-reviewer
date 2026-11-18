@@ -1,0 +1,58 @@
+{
+  "$defs": {
+    "ArtifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "version"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ArtifactRef"
+      },
+      "propertyNames": {
+        "enum": [
+          "requirements",
+          "spec",
+          "workflow",
+          "code",
+          "approvals"
+        ]
+      },
+      "title": "Artifacts",
+      "type": "object"
+    },
+    "bundle_id": {
+      "title": "Bundle Id",
+      "type": "string"
+    },
+    "code_entrypoint": {
+      "default": "route",
+      "title": "Code Entrypoint",
+      "type": "string"
+    }
+  },
+  "required": [
+    "bundle_id",
+    "artifacts"
+  ],
+  "title": "Manifest",
+  "type": "object"
+}

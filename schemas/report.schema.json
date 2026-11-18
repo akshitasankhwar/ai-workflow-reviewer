@@ -1,0 +1,482 @@
+{
+  "$defs": {
+    "CheckResult": {
+      "additionalProperties": false,
+      "properties": {
+        "detail": {
+          "title": "Detail",
+          "type": "string"
+        },
+        "method": {
+          "enum": [
+            "exhaustive",
+            "sampled",
+            "structural",
+            "model",
+            "none"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "failed",
+            "skipped",
+            "error"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tickets_evaluated": {
+          "default": 0,
+          "title": "Tickets Evaluated",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "status",
+        "method",
+        "detail"
+      ],
+      "title": "CheckResult",
+      "type": "object"
+    },
+    "Counterexample": {
+      "additionalProperties": false,
+      "properties": {
+        "actual_route": {
+          "title": "Actual Route",
+          "type": "string"
+        },
+        "actual_rule": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Actual Rule"
+        },
+        "expected_route": {
+          "title": "Expected Route",
+          "type": "string"
+        },
+        "expected_rule": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expected Rule"
+        },
+        "ticket": {
+          "additionalProperties": true,
+          "title": "Ticket",
+          "type": "object"
+        }
+      },
+      "required": [
+        "ticket",
+        "expected_route",
+        "actual_route"
+      ],
+      "title": "Counterexample",
+      "type": "object"
+    },
+    "CoverageItem": {
+      "additionalProperties": false,
+      "description": "One piece of input content and whether the reviewer could interpret it.",
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/Location"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "ambiguous",
+            "ignored"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "location",
+        "status",
+        "reason"
+      ],
+      "title": "CoverageItem",
+      "type": "object"
+    },
+    "Finding": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact": {
+          "title": "Artifact",
+          "type": "string"
+        },
+        "check": {
+          "title": "Check",
+          "type": "string"
+        },
+        "correction": {
+          "title": "Correction",
+          "type": "string"
+        },
+        "counterexample": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Counterexample"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Location"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "location": {
+          "title": "Location",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "origin": {
+          "default": "deterministic",
+          "enum": [
+            "deterministic",
+            "model"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "rule_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Rule Ref"
+        },
+        "severity": {
+          "enum": [
+            "critical",
+            "major",
+            "minor",
+            "info"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "check",
+        "severity",
+        "rule_ref",
+        "artifact",
+        "version",
+        "location",
+        "evidence",
+        "message",
+        "correction"
+      ],
+      "title": "Finding",
+      "type": "object"
+    },
+    "Location": {
+      "additionalProperties": false,
+      "description": "Where a piece of evidence lives: artifact, its version, and a pointer inside it.\n\n`pointer` is a line (\"L12\") for text artifacts, a JSON pointer (\"/rules/2\") for\nJSON artifacts, or a node id (\"node:n3\") for workflow nodes.",
+      "properties": {
+        "artifact": {
+          "enum": [
+            "manifest",
+            "requirements",
+            "spec",
+            "workflow",
+            "code",
+            "approvals"
+          ],
+          "title": "Artifact",
+          "type": "string"
+        },
+        "excerpt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Excerpt"
+        },
+        "line": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line"
+        },
+        "pointer": {
+          "title": "Pointer",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact",
+        "version",
+        "pointer"
+      ],
+      "title": "Location",
+      "type": "object"
+    },
+    "ModelUsage": {
+      "additionalProperties": false,
+      "properties": {
+        "attempts": {
+          "default": [],
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Attempts",
+          "type": "array"
+        },
+        "cache_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cache Key"
+        },
+        "calls": {
+          "title": "Calls",
+          "type": "integer"
+        },
+        "client": {
+          "title": "Client",
+          "type": "string"
+        },
+        "completion_tokens": {
+          "default": 0,
+          "title": "Completion Tokens",
+          "type": "integer"
+        },
+        "model": {
+          "title": "Model",
+          "type": "string"
+        },
+        "prompt_sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Prompt Sha256"
+        },
+        "prompt_tokens": {
+          "default": 0,
+          "title": "Prompt Tokens",
+          "type": "integer"
+        },
+        "prompt_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Prompt Version"
+        },
+        "request": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request"
+        },
+        "response_source": {
+          "default": "none",
+          "enum": [
+            "fake",
+            "real",
+            "cache",
+            "none"
+          ],
+          "title": "Response Source",
+          "type": "string"
+        },
+        "retries": {
+          "title": "Retries",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "client",
+        "model",
+        "calls",
+        "retries"
+      ],
+      "title": "ModelUsage",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_versions": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "default": {},
+      "title": "Artifact Versions",
+      "type": "object"
+    },
+    "bundle_id": {
+      "title": "Bundle Id",
+      "type": "string"
+    },
+    "checks": {
+      "items": {
+        "$ref": "#/$defs/CheckResult"
+      },
+      "title": "Checks",
+      "type": "array"
+    },
+    "coverage": {
+      "items": {
+        "$ref": "#/$defs/CoverageItem"
+      },
+      "title": "Coverage",
+      "type": "array"
+    },
+    "findings": {
+      "items": {
+        "$ref": "#/$defs/Finding"
+      },
+      "title": "Findings",
+      "type": "array"
+    },
+    "incomplete_reasons": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Incomplete Reasons",
+      "type": "array"
+    },
+    "input_hash": {
+      "default": "",
+      "title": "Input Hash",
+      "type": "string"
+    },
+    "model_usage": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ModelUsage"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "CHANGES_REQUIRED",
+        "INCOMPLETE"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    },
+    "unreviewed_scope": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Unreviewed Scope",
+      "type": "array"
+    }
+  },
+  "required": [
+    "bundle_id",
+    "status",
+    "summary",
+    "findings",
+    "coverage",
+    "checks"
+  ],
+  "title": "Report",
+  "type": "object"
+}

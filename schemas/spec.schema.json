@@ -1,0 +1,102 @@
+{
+  "$defs": {
+    "SpecDefault": {
+      "additionalProperties": true,
+      "properties": {
+        "route": {
+          "title": "Route",
+          "type": "string"
+        },
+        "source_refs": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "route"
+      ],
+      "title": "SpecDefault",
+      "type": "object"
+    },
+    "SpecRule": {
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Lower value is evaluated first; array order is irrelevant.",
+          "title": "Priority",
+          "type": "integer"
+        },
+        "route": {
+          "title": "Route",
+          "type": "string"
+        },
+        "source_refs": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Refs",
+          "type": "array"
+        },
+        "when": {
+          "additionalProperties": true,
+          "title": "When",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "priority",
+        "when",
+        "route"
+      ],
+      "title": "SpecRule",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "default": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SpecDefault"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "implements_revision": {
+      "title": "Implements Revision",
+      "type": "string"
+    },
+    "rules": {
+      "items": {
+        "$ref": "#/$defs/SpecRule"
+      },
+      "title": "Rules",
+      "type": "array"
+    },
+    "spec_version": {
+      "title": "Spec Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "spec_version",
+    "implements_revision",
+    "rules"
+  ],
+  "title": "Spec",
+  "type": "object"
+}

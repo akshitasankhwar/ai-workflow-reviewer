@@ -1,0 +1,2 @@
+"""Report assembly and serialisation.
+"""

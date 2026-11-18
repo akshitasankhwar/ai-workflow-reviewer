@@ -1,0 +1,16 @@
+{
+  "approvals": [
+    {
+      "id": "A1",
+      "status": "approved",
+      "approver": "ops-lead",
+      "decided_at": "2026-10-02T10:00:00Z",
+      "applies_to_revision": "r1",
+      "sequence": 1,
+      "changes": [
+        {"requirement": "R3", "set_threshold": {"value": 25, "unit": "minutes", "field": "wait_time"}}
+      ],
+      "note": "Escalate sooner during the holiday backlog."
+    }
+  ]
+}

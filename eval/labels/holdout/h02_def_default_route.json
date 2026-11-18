@@ -1,0 +1,13 @@
+{
+  "bundle_id": "h02_def_default_route",
+  "split": "holdout",
+  "expected_status": "CHANGES_REQUIRED",
+  "defect_rules": [
+    "R9"
+  ],
+  "case_type": "wrong_branch",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 25,
+  "pair_of": null,
+  "note": "workflow default route is escalation"
+}

@@ -1,0 +1,6 @@
+{
+  "spec_version": "s1",
+  "implements_revision": "r1",
+  "rules": [
+    {"id": "S1", "priority": 1, "when": {"missing": "category"}, "route": "manual_review", "source_refs": ["R1"]},
+    {"id": "S2", "priority": 2, "when": {"field": "priority", "op": "==", "value": "urgent"

@@ -1,0 +1,13 @@
+{
+  "bundle_id": "b08_def_missing_requirement",
+  "split": "dev",
+  "expected_status": "CHANGES_REQUIRED",
+  "defect_rules": [
+    "R2"
+  ],
+  "case_type": "missing_requirement",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 25,
+  "pair_of": null,
+  "note": "spec has no rule for R2"
+}

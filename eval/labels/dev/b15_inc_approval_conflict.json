@@ -1,0 +1,11 @@
+{
+  "bundle_id": "b15_inc_approval_conflict",
+  "split": "dev",
+  "expected_status": "INCOMPLETE",
+  "defect_rules": [],
+  "case_type": "approval_conflict",
+  "fake_script": "valid",
+  "oracle_r3_minutes": null,
+  "pair_of": null,
+  "note": "A1 says 25, A2 says 35, same sequence"
+}

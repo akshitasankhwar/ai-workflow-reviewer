@@ -1,0 +1,11 @@
+{
+  "bundle_id": "b18_inc_unsupported_code",
+  "split": "dev",
+  "expected_status": "INCOMPLETE",
+  "defect_rules": [],
+  "case_type": "unsupported_construct",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 25,
+  "pair_of": null,
+  "note": "code uses a for loop the compiler cannot model"
+}

@@ -1,0 +1,13 @@
+{
+  "bundle_id": "b11_def_code_disagrees",
+  "split": "dev",
+  "expected_status": "CHANGES_REQUIRED",
+  "defect_rules": [
+    "R2"
+  ],
+  "case_type": "code_disagrees",
+  "fake_script": "valid",
+  "oracle_r3_minutes": 25,
+  "pair_of": null,
+  "note": "code returns escalation for urgent"
+}
