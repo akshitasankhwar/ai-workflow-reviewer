@@ -25,6 +25,36 @@ load -> compile each artifact to one decision-list IR -> resolve approvals
   gap, skipped or crashed required check forces `INCOMPLETE` (`decision.py`).
 - Code in bundles is parsed (AST), never executed by the reviewer.
 
+### Supported scope
+
+- **One workflow family:** support-ticket routing. Fields `category` (billing / technical /
+  account), `priority` (low / normal / high / urgent), `wait_time` (number, minutes); rules
+  R1 missing category → manual_review, R2 urgent → priority_queue, R3 wait ≥ 30 → escalation
+  (approved change: 25), R9 default → normal_queue.
+- **Spec conditions:** `< <= > >= == != in not_in`, `all`/`any`, `not`, `missing`, `present`.
+  Units s / min / h / d (and aliases) are converted to the field's unit.
+- **Missing values:** a field is missing if its key is absent or `None`; a comparison on a
+  missing field is false, so `not (wait_time < 25)` is *true* for a ticket without `wait_time`.
+- **Code subset** (`ingest/code_compiler.py`): constants, one `def route(ticket)` with
+  if/elif/else, `return "<route>"`, `ticket.get(...)` / `ticket[...]` aliases, and/or/not,
+  chained comparisons, `is None`, `in` a tuple, `minutes()`/`seconds()`/`hours()`/`days()`.
+  Python behaviour is kept: `ticket["f"]` on a missing key or `None < 5` routes to `__error__`;
+  falling off the end routes to `__none__`. Anything else is an *unsupported construct* gap.
+- **Approvals:** approved changes are applied, rejected ones ignored, and two approved changes
+  that set the same rule attribute to different values are a conflict (`INCOMPLETE`) unless
+  an explicit `sequence` orders them.
+
+### Semantic checks (`src/reviewer/checks/`)
+
+| Check | What it catches |
+|---|---|
+| `spec_check` | spec routes some ticket differently from the effective requirements |
+| `workflow_check` | same for the workflow graph (each start→route path is one rule); also dangling edges, cycles, unreachable nodes |
+| `code_check` | same for the code; the `# ref:` comment only names the rule, the returned route is what is compared |
+| `coverage_check` | a requirement not mapped in some artifact; major when equivalence also failed on it |
+| `interaction_check` | overlapping rules and which one wins; a rule that never wins is shadowed |
+| `injection_check` | instruction-like text in artifacts ("approved by", "say PASS"); informational, never changes the decision |
+
 ## 2. Evaluation setup
 
 | Item | Where |
@@ -50,7 +80,7 @@ handling is checked against a value fixed per case, not against the reviewer's o
 
 **Holdout discipline.** The holdout was generated and frozen once; `run_eval` refuses to score
 it if any bundle, label or `config/default.json` hash changed. It was not used while fixing
-bugs (both real fixes below were found on dev).
+bugs (Debug 3 was found on dev; Debug 1 predates the holdout).
 
 **One command (CPU-only, offline):** `python scripts/run_all.py` runs the tests, all three
 runs on both splits, and the comparisons. Model client = fake (scripted per label).
@@ -111,12 +141,24 @@ attribute to the actual (firing) rule; otherwise keep the expected rule. *Regres
 both directions (too-early escalation → R3; missed escalation → R3). This fix is the exact
 difference between the checkpoint and final.
 
-**Debugs 1 and 2** (`test_debug_01.py`, `test_debug_02.py`) were written during Stages 1–2.
-I cannot reconstruct their original failing output from history (the repo has no commits), so
-I do not claim them as Stage 4 discoveries. What they protect: (1) `not (wait_time < 25)` is
-true for a ticket with no `wait_time` and must not be treated as `wait_time >= 25`;
-(2) a required check that raises must be reported as `error` and force `INCOMPLETE` — that
-test injects the crash on purpose (labelled fault injection via `monkeypatch`).
+**Debug 1 — negation and missing values** (`tests/regression/test_debug_01.py`). The bug was
+fixed in Stage 2 and its original output was not kept, so for this note it was **reproduced**:
+the old `not_` (push the negation into the comparison, `not (x < 25)` → `x >= 25`) was put
+back into a scratch copy of `src/` and the regression tests were run against it.
+*Failing output:* `test_bare_negation_is_a_mismatch_on_missing_wait_time` — `StopIteration`
+at `test_debug_01.py:26` (no spec counterexample at all), and
+`test_negation_with_present_is_equivalent` — `assert 'CHANGES_REQUIRED' == 'PASS'`.
+*Diagnosis:* with the rewrite, a spec saying `not (wait_time < 25)` looked identical to the
+requirement `wait_time >= 25`, so the real defect (a ticket with no `wait_time` is escalated)
+was hidden, and the correct spec `present(wait_time) and not (wait_time < 25)` was blocked.
+The rewrite silently drops the missing-value rule. *Fix:* `ir.not_` keeps `Not(Compare)` and
+only simplifies constants and double negation. *Regression test:* both cases above; with the
+fix the first gives counterexample `{category: account, priority: high}` (expected
+normal_queue, got escalation) and the second gives `PASS`.
+
+**Debug 2 — crashing check** (`test_debug_02.py`) is **fault injection**, not a found bug: a
+required check is made to raise via `monkeypatch`, and the test requires it to be reported as
+`error` and the review to be `INCOMPLETE` rather than silently skipped.
 
 ## 5. Ablation — ignore approvals
 
@@ -146,6 +188,11 @@ resolution is load-bearing; without it the reviewer is safe (no false passes) bu
 became `INCOMPLETE` with `model_review:error`, 0 successful model calls, 37 s total spent on
 timeouts. This shows the fail-safe path works with a real client but gives **no evidence about
 real model quality** — that remains unmeasured.
+
+**Semantic model performance was not measured.** What is submitted instead: the prompt
+`src/reviewer/model/reviewer_v1.md`, the client interface `src/reviewer/model/client.py`
+(fake and Ollama implementations beside it) and the validator that every response passes
+through. All model numbers in §3 come from the scripted fake client and are labelled as such.
 
 ## 7. Limitations and what I'd do next
 
